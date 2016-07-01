@@ -1,9 +1,14 @@
 package com.ug.encuesta.dominio;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name="grupos")
 public class Grupo {
@@ -14,6 +19,24 @@ public class Grupo {
 	private int grupo_id;
 	private String literal;
 	private String descripcion;
+	
+	
+	public Grupo(){
+		
+	}
+	
+	
+	public Grupo(int grupo_id, String literal, String descripcion) {
+		super();
+		this.grupo_id = grupo_id;
+		this.literal = literal;
+		this.descripcion = descripcion;
+	}
+	
+	
+	@OneToMany(mappedBy="grupo")
+	@JsonManagedReference
+	private List<Subgrupo> subgrupos;
 	
 	
 	public int getGrupo_id() {
@@ -33,6 +56,12 @@ public class Grupo {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public List<Subgrupo> getSubgrupos() {
+		return subgrupos;
+	}
+	public void setSubgrupos(List<Subgrupo> subgrupos) {
+		this.subgrupos = subgrupos;
 	}
 	
 	

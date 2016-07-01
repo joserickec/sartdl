@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity(name="subgrupos")
 public class Subgrupo {
@@ -12,21 +16,23 @@ public class Subgrupo {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
 	private int subgrupo_id;
-	private int grupo_id;
+	//private int grupo_id;
 	private String literal;
 	private String descripcion;
+	
+	@ManyToOne
+	@JoinColumn(name="grupo_id")
+	@JsonBackReference
+	private Grupo grupo;
+	
+	
 	public int getSubgrupo_id() {
 		return subgrupo_id;
 	}
 	public void setSubgrupo_id(int subgrupo_id) {
 		this.subgrupo_id = subgrupo_id;
 	}
-	public int getGrupo_id() {
-		return grupo_id;
-	}
-	public void setGrupo_id(int grupo_id) {
-		this.grupo_id = grupo_id;
-	}
+
 	public String getLiteral() {
 		return literal;
 	}
@@ -38,6 +44,12 @@ public class Subgrupo {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public Grupo getGrupo() {
+		return grupo;
+	}
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
 	}
 
 	

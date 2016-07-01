@@ -18,6 +18,20 @@ public class SubgruposController {
 	@Autowired
 	private SubgrupoRepository SubgrupoRepository;
 	
+	@RequestMapping (value="/grupos/{grupo_id}/subgrupos", method=RequestMethod.GET)
+	public Iterable<Subgrupo> getSubGrupoByGrupo(@PathVariable int grupo_id) {
+		
+		return SubgrupoRepository.getSubGrupoByGrupo(grupo_id);
+		
+	}
+	
+	
+	@RequestMapping (value="/subgrupos", method=RequestMethod.GET)
+	public Iterable<Subgrupo> findAll(){
+		return SubgrupoRepository.findAll();
+		
+	}
+	
 	
 	@RequestMapping (value="/subgrupos", method=RequestMethod.POST)
 	public ResponseEntity<?> save(@RequestBody Subgrupo subgrupo)
@@ -27,12 +41,11 @@ public class SubgruposController {
 	}
 	
 	
-	
-	@RequestMapping (value="/subgrupos", method=RequestMethod.GET)
-	public ResponseEntity<?> findAll() {
-			Iterable<Subgrupo> subgrupos= SubgrupoRepository.findAll();
-			return new ResponseEntity<>(subgrupos,HttpStatus.OK);
-	}
+	//@RequestMapping (value="/subgrupos", method=RequestMethod.GET)
+	//public ResponseEntity<?> findAll() {
+	//		Iterable<Subgrupo> subgrupos= SubgrupoRepository.findAll();
+	//		return new ResponseEntity<>(subgrupos,HttpStatus.OK);
+	//}
 	
 	
 	@RequestMapping (value="/subgrupos/{subgrupo_id}", method=RequestMethod.GET)
@@ -44,7 +57,6 @@ public class SubgruposController {
 			
 	}
 	
-	
-	
+
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ug.encuesta.dominio.Grupo;
@@ -26,13 +27,26 @@ public class GrupoController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	
-	
+
 	@RequestMapping (value="/grupos", method=RequestMethod.GET)
-	public ResponseEntity<?> findAll() {
-			Iterable<Grupo> grupos= grupoRepository.findAll();
+	public ResponseEntity<?> findAll (@RequestParam(defaultValue="true") boolean control) {
+			Iterable<Grupo> grupos;
+			
+			if (control)
+				grupos = grupoRepository.findAll();
+				else
+					grupos = grupoRepository.getGrupo();
+			
+			
+			
 			return new ResponseEntity<>(grupos,HttpStatus.OK);
 	}
+	
+	//@RequestMapping (value="/grupos", method=RequestMethod.GET)
+	//public ResponseEntity<?> findAll() {
+	//		Iterable<Grupo> grupos= grupoRepository.findAll();
+	//		return new ResponseEntity<>(grupos,HttpStatus.OK);
+	//}
 	
 	
 	@RequestMapping (value="/grupos/{grupo_id}", method=RequestMethod.GET)
@@ -44,6 +58,23 @@ public class GrupoController {
 			
 	}
 
+	@RequestMapping (value="/grupos/{literal}", method=RequestMethod.GET)
+	public ResponseEntity<?> findByLiteral(@PathVariable String literal) {
+			
+		Iterable<Grupo>  grupos= grupoRepository.findByLiteral(literal);
+			
+			return new ResponseEntity<>(grupos,HttpStatus.OK);
+			
+	}
+	
+	// FALTA CODIGO
+	// FALTA CODIGO
+	// FALTA CODIGO
+	// FALTA CODIGO
+	// FALTA CODIGO
+	// FALTA CODIGO
+	
+	
 	//
 	
 	/*
