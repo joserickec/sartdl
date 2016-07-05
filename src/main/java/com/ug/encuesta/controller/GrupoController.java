@@ -20,6 +20,10 @@ public class GrupoController {
 	private GrupoRepository grupoRepository;
 	
 	
+	
+	
+	// Ingresar Datos
+	
 	@RequestMapping (value="/grupos", method=RequestMethod.POST)
 	public ResponseEntity<?> save(@RequestBody Grupo grupo)
 	{
@@ -27,6 +31,18 @@ public class GrupoController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
+	// Modificar Datos
+	
+	/*
+	@RequestMapping (value="/grupos/{grupo_id}", method=RequestMethod.PUT)
+	public ResponseEntity<?> save(@RequestBody Grupo grupo)
+	{
+		grupoRepository.save(grupo);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	*/
+	
+	// Obtener Datos de todos 
 
 	@RequestMapping (value="/grupos", method=RequestMethod.GET)
 	public ResponseEntity<?> findAll (@RequestParam(defaultValue="true") boolean control) {
@@ -35,10 +51,7 @@ public class GrupoController {
 			if (control)
 				grupos = grupoRepository.findAll();
 				else
-					grupos = grupoRepository.getGrupo();
-			
-			
-			
+			    grupos = grupoRepository.getGrupo();
 			return new ResponseEntity<>(grupos,HttpStatus.OK);
 	}
 	
@@ -49,6 +62,7 @@ public class GrupoController {
 	//}
 	
 	
+	// Obtener Datos por ID
 	@RequestMapping (value="/grupos/{grupo_id}", method=RequestMethod.GET)
 	public ResponseEntity<?> findOne(@PathVariable int grupo_id) {
 			
@@ -58,45 +72,26 @@ public class GrupoController {
 			
 	}
 
-	@RequestMapping (value="/grupos/{literal}", method=RequestMethod.GET)
-	public ResponseEntity<?> findByLiteral(@PathVariable String literal) {
-			
-		Iterable<Grupo>  grupos= grupoRepository.findByLiteral(literal);
-			
-			return new ResponseEntity<>(grupos,HttpStatus.OK);
-			
+	// Obtener Datos por Literal
+	
+	@RequestMapping(value="/grupos/{literal}",method=RequestMethod.GET)
+	public ResponseEntity<?> findByLiteral(@PathVariable String literal){
+		Iterable<Grupo> grupos= grupoRepository.findByLiteral(literal);
+		return new ResponseEntity<>(grupos,HttpStatus.OK);
 	}
 	
-	// FALTA CODIGO
-	// FALTA CODIGO
-	// FALTA CODIGO
-	// FALTA CODIGO
-	// FALTA CODIGO
-	// FALTA CODIGO
-	
-	
-	//
-	
-	/*
-	
-	@RequestMapping (value="/grupos/{grupo_id}", method=RequestMethod.PUT)
-	public ResponseEntity<?> (@PathVariable int grupo_id) {
-			
-		Grupo  grupos= grupoRepository.findOne(grupo_id);
-			
-		if (grupos==null)
-		{
-			return new ResponseEntity<>(grupos,HttpStatus.NOT_FOUND);
-			
-		} else
-		{
-			grupoRepository.updat (grupos);
-			return new ResponseEntity<>(grupos,HttpStatus.OK);
-		}	
+	// Obtener Datos por Descripcion
+	@RequestMapping(value="/grupos/{literal}/{descripcion}",method=RequestMethod.GET)
+	public ResponseEntity<?> findByLiteral(@PathVariable String literal,@PathVariable String descripcion){
+		Iterable<Grupo> grupos= grupoRepository.findByLiteralOrDescripcion(literal,descripcion);
+		return new ResponseEntity<>(grupos,HttpStatus.OK);
 	}
-		
-	*/
 	
+	
+	
+
+	
+
 	
 }
 

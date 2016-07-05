@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity(name="requisitos")
 public class Requisito {
@@ -13,24 +17,27 @@ public class Requisito {
 	
 	private int requisito_id;
 	
-	private int subgrupo_id;
+	//private int subgrupo_id;
 	private String literal;
 	private String descripcion;
 	private Boolean tiene_sangria;
 	private Boolean es_calificable;
 	private Double peso_relativo;
+	
+	@ManyToOne
+	@JoinColumn(name="subgrupo_id")
+	@JsonBackReference
+	private Subgrupo subgrupo;
+
+	
+	
 	public int getRequisito_id() {
 		return requisito_id;
 	}
 	public void setRequisito_id(int requisito_id) {
 		this.requisito_id = requisito_id;
 	}
-	public int getSubgrupo_id() {
-		return subgrupo_id;
-	}
-	public void setSubgrupo_id(int subgrupo_id) {
-		this.subgrupo_id = subgrupo_id;
-	}
+
 	public String getLiteral() {
 		return literal;
 	}
@@ -61,6 +68,13 @@ public class Requisito {
 	public void setPeso_relativo(Double peso_relativo) {
 		this.peso_relativo = peso_relativo;
 	}
+	public Subgrupo getSubgrupo() {
+		return subgrupo;
+	}
+	public void setSubgrupo(Subgrupo subgrupo) {
+		this.subgrupo = subgrupo;
+	}
+
 	
 	
 	
