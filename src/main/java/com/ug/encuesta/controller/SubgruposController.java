@@ -39,13 +39,26 @@ public class SubgruposController {
 			return new ResponseEntity<>(subgrupos,HttpStatus.OK);
 	}
 	
+	// Obtener Datos por Literal
 	
+	@RequestMapping(value="/subgrupos/{literal}",method=RequestMethod.GET)
+	public ResponseEntity<?> findByLiteral(@PathVariable String literal){
+		Iterable<Subgrupo> subgrupos= SubgrupoRepository.findByLiteral(literal);
+		return new ResponseEntity<>(subgrupos,HttpStatus.OK);
+	}
 	
+	// Obtener Datos por Descripcion
+	@RequestMapping(value="/subgrupos/{literal}/{descripcion}",method=RequestMethod.GET)
+	public ResponseEntity<?> findByLiteral(@PathVariable String literal,@PathVariable String descripcion){
+		Iterable<Subgrupo> subgrupos= SubgrupoRepository.findByLiteralOrDescripcion(literal,descripcion);
+		return new ResponseEntity<>(subgrupos,HttpStatus.OK);
+	}
 	
+
 	
+	/*
 	
-	
-	
+		
 	@RequestMapping (value="/grupos/{grupo_id}/subgrupos", method=RequestMethod.GET)
 	public Iterable<Subgrupo> getSubGrupoByGrupo(@PathVariable int grupo_id) {
 		
@@ -53,8 +66,6 @@ public class SubgruposController {
 		
 	}
 	
-	
-	/*
 	
 	// Metodo Iterable
 	
@@ -75,7 +86,6 @@ public class SubgruposController {
 	
 	*/
 
-
 	
 	@RequestMapping (value="/subgrupos/{subgrupo_id}", method=RequestMethod.GET)
 	public ResponseEntity<?> findOne(@PathVariable int subgrupo_id) {
@@ -87,21 +97,7 @@ public class SubgruposController {
 	}
 	
 
-	// Obtener Datos por Literal
-	
-	@RequestMapping(value="/subgrupos/{literal}",method=RequestMethod.GET)
-	public ResponseEntity<?> findByLiteral(@PathVariable String literal){
-		Iterable<Subgrupo> subgrupos= SubgrupoRepository.findByLiteral(literal);
-		return new ResponseEntity<>(subgrupos,HttpStatus.OK);
-	}
-	
-	// Obtener Datos por Descripcion
-	@RequestMapping(value="/subgrupos/{literal}/{descripcion}",method=RequestMethod.GET)
-	public ResponseEntity<?> findByLiteral(@PathVariable String literal,@PathVariable String descripcion){
-		Iterable<Subgrupo> subgrupos= SubgrupoRepository.findByLiteralOrDescripcion(literal,descripcion);
-		return new ResponseEntity<>(subgrupos,HttpStatus.OK);
-	}
-	
+
 	
 	
 	

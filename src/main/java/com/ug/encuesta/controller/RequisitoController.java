@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.ug.encuesta.dominio.Requisito;
 import com.ug.encuesta.repository.RequisitoRepository;
 
@@ -40,21 +39,38 @@ public class RequisitoController {
 		return new ResponseEntity<>(requisitos,HttpStatus.OK);
 	}
 	
+	// Obtener Datos por Literal
+	
+	@RequestMapping(value="/requisitos/{literal}",method=RequestMethod.GET)
+	public ResponseEntity<?> findByLiteral(@PathVariable String literal){
+		Iterable<Requisito> requisitos= requisitoRepository.findByLiteral(literal);
+		return new ResponseEntity<>(requisitos,HttpStatus.OK);
+	}
+	
+	// Obtener Datos por Descripcion
+	@RequestMapping(value="/requisitos/{literal}/{descripcion}",method=RequestMethod.GET)
+	public ResponseEntity<?> findByLiteral(@PathVariable String literal,@PathVariable String descripcion){
+		Iterable<Requisito> requisitos= requisitoRepository.findByLiteralOrDescripcion(literal,descripcion);
+		return new ResponseEntity<>(requisitos,HttpStatus.OK);
+	}
 	
 	
 	
 	/*
-	
-	
 	@RequestMapping(value="/requisitos",method=RequestMethod.GET)
 	public Iterable<Requisito> findAll(){
 		return requisitoRepository.findAll();
 	}
-	*/
 	
-	@RequestMapping(value="/subgrupos/{subgrupo_id}/requisitos",method=RequestMethod.GET)
+			@RequestMapping(value="/subgrupos/{subgrupo_id}/requisitos",method=RequestMethod.GET)
 	public Iterable<Requisito> getRequisitoBySubGrupo(@PathVariable int subgrupo_id){
 		return requisitoRepository.getRequisitoBySubGrupo(subgrupo_id);
 	}
+	
+	*/
+	
+
+		
+
 	
 }

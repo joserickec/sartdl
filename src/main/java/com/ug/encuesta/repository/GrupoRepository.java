@@ -19,4 +19,7 @@ public interface GrupoRepository extends CrudRepository<Grupo, Integer> {
 	public List<Grupo> findByLiteralOrDescripcion (String arg ,String des);	
 	
 	
+	
 }
+
+
