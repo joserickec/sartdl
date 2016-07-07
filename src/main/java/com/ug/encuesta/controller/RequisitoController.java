@@ -61,13 +61,13 @@ public class RequisitoController {
 	public Iterable<Requisito> findAll(){
 		return requisitoRepository.findAll();
 	}
-	
+	*/
 			@RequestMapping(value="/subgrupos/{subgrupo_id}/requisitos",method=RequestMethod.GET)
 	public Iterable<Requisito> getRequisitoBySubGrupo(@PathVariable int subgrupo_id){
 		return requisitoRepository.getRequisitoBySubGrupo(subgrupo_id);
 	}
 	
-	*/
+	
 	
 
 		

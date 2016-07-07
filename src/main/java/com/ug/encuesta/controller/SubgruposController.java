@@ -56,7 +56,7 @@ public class SubgruposController {
 	
 
 	
-	/*
+
 	
 		
 	@RequestMapping (value="/grupos/{grupo_id}/subgrupos", method=RequestMethod.GET)
@@ -66,7 +66,7 @@ public class SubgruposController {
 		
 	}
 	
-	
+	/*
 	// Metodo Iterable
 	
 	@RequestMapping (value="/subgrupos", method=RequestMethod.GET)
