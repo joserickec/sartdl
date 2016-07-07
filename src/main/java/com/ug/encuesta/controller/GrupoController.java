@@ -19,17 +19,35 @@ public class GrupoController {
 	@Autowired
 	private GrupoRepository grupoRepository;
 	
-	
-	
-	
+		
 	// Ingresar Datos
-	
-	@RequestMapping (value="/grupos", method=RequestMethod.POST)
+		@RequestMapping (value="/grupos", method=RequestMethod.POST)
 	public ResponseEntity<?> save(@RequestBody Grupo grupo)
 	{
 		grupoRepository.save(grupo);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+		// Obtener Datos de todos 
+		@RequestMapping (value="/grupos", method=RequestMethod.GET)
+		public ResponseEntity<?> findAll (@RequestParam(defaultValue="true") boolean control) {
+				Iterable<Grupo> grupos;
+				
+				if (control)
+					grupos = grupoRepository.findAll();
+					else
+				    grupos = grupoRepository.getGrupo();
+				return new ResponseEntity<>(grupos,HttpStatus.OK);
+		}
+		
+		
+		
+		
+
+	
+	
+	
+	
 	
 	// Modificar Datos
 	
@@ -42,18 +60,7 @@ public class GrupoController {
 	}
 	*/
 	
-	// Obtener Datos de todos 
 
-	@RequestMapping (value="/grupos", method=RequestMethod.GET)
-	public ResponseEntity<?> findAll (@RequestParam(defaultValue="true") boolean control) {
-			Iterable<Grupo> grupos;
-			
-			if (control)
-				grupos = grupoRepository.findAll();
-				else
-			    grupos = grupoRepository.getGrupo();
-			return new ResponseEntity<>(grupos,HttpStatus.OK);
-	}
 	
 	//@RequestMapping (value="/grupos", method=RequestMethod.GET)
 	//public ResponseEntity<?> findAll() {
