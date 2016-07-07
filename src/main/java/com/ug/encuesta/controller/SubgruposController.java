@@ -54,6 +54,8 @@ public class SubgruposController {
 	}
 	
 	
+	/*
+	
 	// Metodo Iterable
 	
 	@RequestMapping (value="/subgrupos", method=RequestMethod.GET)
@@ -71,7 +73,7 @@ public class SubgruposController {
 	//		return new ResponseEntity<>(subgrupos,HttpStatus.OK);
 	//}
 	
-	
+	*/
 
 
 	

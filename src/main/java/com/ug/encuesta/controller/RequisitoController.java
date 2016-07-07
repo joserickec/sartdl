@@ -21,14 +21,14 @@ public class RequisitoController {
 	private RequisitoRepository requisitoRepository;
 	
 	// Ingresar Datos
-	@RequestMapping(value="/grupos",method=RequestMethod.POST)
+	@RequestMapping(value="/requisitos",method=RequestMethod.POST)
 	public ResponseEntity<?> save(@RequestBody Requisito requisitos){
 		requisitoRepository.save(requisitos);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	// Obtener Datos
-	@RequestMapping(value="/grupos",method=RequestMethod.GET)
+	@RequestMapping(value="/requisitos",method=RequestMethod.GET)
 	public ResponseEntity<?> findAll(@RequestParam(defaultValue="true") boolean control){
 		Iterable<Requisito> requisitos;
 		
@@ -43,13 +43,14 @@ public class RequisitoController {
 	
 	
 	
-	
+	/*
 	
 	
 	@RequestMapping(value="/requisitos",method=RequestMethod.GET)
 	public Iterable<Requisito> findAll(){
 		return requisitoRepository.findAll();
 	}
+	*/
 	
 	@RequestMapping(value="/subgrupos/{subgrupo_id}/requisitos",method=RequestMethod.GET)
 	public Iterable<Requisito> getRequisitoBySubGrupo(@PathVariable int subgrupo_id){

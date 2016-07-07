@@ -24,6 +24,21 @@ public class Requisito {
 	private Boolean es_calificable;
 	private Double peso_relativo;
 	
+	
+	
+	
+	
+	public Requisito() {
+		
+	}
+	
+	public Requisito(int requisito_id, String literal, String descripcion) {
+		super();
+		this.requisito_id = requisito_id;
+		this.literal = literal;
+		this.descripcion = descripcion;
+	}
+	
 	@ManyToOne
 	@JoinColumn(name="subgrupo_id")
 	@JsonBackReference
