@@ -44,6 +44,8 @@ public class Subgrupo {
 	private List<Requisito> requisitos;
 	
 	
+	
+	
 	@ManyToOne
 	@JoinColumn(name="grupo_id")
 	@JsonBackReference
